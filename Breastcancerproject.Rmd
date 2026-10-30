@@ -1,0 +1,254 @@
+---
+title: "BreastCancerMortality"
+author: "Zariyah Williams"
+date: "2026-10-22"
+output: html_document
+---
+```{r}
+library(dplyr)
+```
+
+```{r}
+library(tidyverse)
+```
+
+```{r}
+library(readr)
+```
+
+```{r}
+breast_cancer <- read_csv("2019 breast cancer both genders.csv")
+```
+
+```{r}
+unique(breast_cancer[, c("location_name", "location_id", "fips")])
+```
+```{r}
+names(breast_cancer)
+```
+
+
+```{r}
+library(stringr)
+```
+
+```{r}
+breast_cancer <- breast_cancer %>%
+  mutate(State = ifelse(
+    str_detect(location_name, " County \\("),
+    str_extract(location_name, "(?<=\\().*(?=\\))"),
+    location_name
+  ))
+
+```
+
+```{r}
+head(breast_cancer[, c("location_name", "State")], 10)
+```
+
+
+```{r}
+filter(breast_cancer, State == "Alabama")
+```
+```{r}
+Alabama_table <- filter(breast_cancer, State == "Alabama")
+
+```
+
+```{r}
+Alaska_table <- filter(breast_cancer, State == "Alaska")
+```
+
+```{r}
+Arizona_table <- filter(breast_cancer, State == "Arizona")
+```
+
+```{r}
+Arkansas_table <- filter(breast_cancer, State == "Arkansas")
+```
+
+```{r}
+California_table <- filter(breast_cancer, State == "California")
+```
+
+```{r}
+Colorado_table <- filter(breast_cancer, State == "Colorado")
+```
+
+```{r}
+Connecticut_table <- filter(breast_cancer, State == "Connecticut")
+```
+
+```{r}
+Delaware_table <- filter(breast_cancer, State == "Delaware")
+```
+
+```{r}
+Georgia_table <- filter(breast_cancer, State == "Georgia")
+```
+
+```{r}
+Florida_table <- filter(breast_cancer, State == "Florida")
+
+```
+
+```{r}
+Hawaii_table <- filter(breast_cancer, State == "Hawaii")
+```
+
+```{r}
+Idaho_table <- filter(breast_cancer, State == "Idaho")
+```
+
+```{r}
+Illinois_table <- filter(breast_cancer, State == "Illinois")
+```
+
+```{r}
+Indiana_table <- filter(breast_cancer, State == "Indiana")
+```
+
+```{r}
+Iowa_table <- filter(breast_cancer, State == "Iowa")
+```
+
+```{r}
+Kansas_table <- filter(breast_cancer, State == "Kansas")
+```
+
+```{r}
+Kentucky_table <- filter(breast_cancer, State == "Kentucky")
+```
+
+```{r}
+Louisiana_table <- filter(breast_cancer, State == "Louisiana")
+```
+
+```{r}
+Maryland_table <- filter(breast_cancer, State == "Maryland")
+```
+
+```{r}
+Massachusetts_table <- filter(breast_cancer, State == "Massachusetts")
+```
+
+```{r}
+Michigan_table <- filter(breast_cancer, State == "Michigan")
+```
+
+```{r}
+Missouri_table <- filter(breast_cancer, State == "Missouri")
+```
+
+```{r}
+Montana_table <- filter(breast_cancer, State == "Montana")
+```
+
+```{r}
+Nebraska_table <- filter(breast_cancer, State == "Nebraska")
+```
+
+```{r}
+Nevada_table <- filter(breast_cancer, State == "Nevada")
+```
+
+```{r}
+New_Jersey_table <- filter(breast_cancer, State == "New Jersey")
+```
+
+```{r}
+New_Mexico_table <- filter(breast_cancer, State == "New Mexico")
+```
+
+```{r}
+New_York_table <- filter(breast_cancer, State == "New York")
+```
+
+```{r}
+North_Carolina_table <- filter(breast_cancer, State == "North Carolina")
+```
+
+```{r}
+North_Dakota_table <- filter(breast_cancer, State == "North Dakota")
+```
+
+```{r}
+Ohio_table <- filter(breast_cancer, State == "Ohio")
+```
+
+```{r}
+Pennsylvania_table <- filter(breast_cancer, State == "Pennsylvania")
+```
+
+```{r}
+South_Carolina_table <- filter(breast_cancer, State == "South Carolina")
+```
+
+```{r}
+South_Dakota_table <- filter(breast_cancer, State == "South Dakota")
+```
+
+```{r}
+Utah_table <- filter(breast_cancer, State == "Utah")
+```
+
+```{r}
+Minnesota_table <- filter(breast_cancer, State == "Minnesota")
+```
+
+```{r}
+Maine_table <- filter(breast_cancer, State == "Maine")
+```
+
+```{r}
+New_Hampshire_table <- filter(breast_cancer, State == "New Hampshire")
+```
+
+```{r}
+Mississippi_table <- filter(breast_cancer, State == "Mississippi")
+```
+
+```{r}
+Oregon_table <- filter(breast_cancer, State == "Oregon")
+```
+
+```{r}
+Oklahoma_table <- filter(breast_cancer, State == "Oklahoma")
+```
+
+```{r}
+Texas_table <- filter(breast_cancer, State == "Texas")
+```
+
+```{r}
+Vermont_table <- filter(breast_cancer, State == "Vermont")
+```
+
+```{r}
+Virginia_table <- filter(breast_cancer, State == "Virginia")
+```
+
+```{r}
+Washington_table <- filter(breast_cancer, State == "Washington")
+```
+
+```{r}
+Wisconsin_table <- filter(breast_cancer, State == "Wisconsin")
+```
+
+```{r}
+West_Virginia_table <- filter(breast_cancer, State == "West Virginia")
+```
+
+```{r}
+Tennessee_table <- filter(breast_cancer, State == "Tennessee")
+```
+
+```{r}
+Wyoming_table <- filter(breast_cancer, State == "Wyoming")
+```
+
+```{r}
+Rhode_Island_table <- filter(breast_cancer, State == "Rhode_Island")
+```
+

@@ -13,7 +13,7 @@ state_choices  <- breast_cancer %>% filter(str_detect(location_name, "\\(")) %>%
 county_choices <- breast_cancer %>% filter(str_detect(location_name, "\\(")) %>% 
   transmute(county = str_remove(location_name, " \\(.*\\)$")) %>% pull(county) %>% unique() %>% sort()
 
-race_choices   <- unique(breast_cancer$race_ethnicity)
+race_choices   <- unique(breast_cancer$race_name)
 
 data("county2020", package = "USpopcenters")
 
@@ -41,9 +41,9 @@ geocoded_data <- breast_cancer %>%
 ui <- navbarPage(
   title = "Breast Cancer Project", id = "tabs",
   header = tags$head(tags$style(HTML("
-    body {background-color: #fff0f5;}
+    body {background-color: white;}
     h1, h2 {color: #c2185b; text-align: center;}
-    h3, h4 {color: #ad1457; text-align: center;}
+    h4 {color: #ad1457; text-align: center;}
     p {color: #ad1457; text-align: center; font-size: 16px;}
     .map-container {display: flex; justify-content: center; margin: 20px;}
     .navbar {background-color: #c2185b;}
@@ -51,11 +51,16 @@ ui <- navbarPage(
   "))),
   
   tabPanel("Home",
-           h1("Beyond the Numbers"),
-           h3("Understanding Breast Cancer Mortality in the U.S."),
-           p("Explore 2019 breast cancer mortality data across racial and ethnic groups and locations."),
+           h1("Understanding Breast Cancer Mortality in the U.S."),
+           
+           p("Breast cancer is a disease that affects roughly 1 in 8 women and around 3,000 cases for men each year in the United States and is the most common cancer among women (American Cancer Society). From this, it is estimated 42,140 women die from breast cancer, so this is a disease that affects millions of United States citizens and their families. Each year, about 32% of all newly diagnosed cancers in women are breast cancer and with this black women have 5% lower rate of breast cancer diagnosis compared to white women, but they have a 38% higher risk of dying. The median age at the time of breast cancer diagnosis is 62, but rates have been rising in younger women in recent years (BreastCancer.Org)."),
+           
            div(class = "map-container", leafletOutput("homepageMap", width = "80%", height = "500px")),
-           h4("United States Breast Cancer Mortality Map"),
+           p("United States Breast Cancer Mortality Map"),
+           
+           h4("Risk Factors"),
+           p("There are many risk factors for breast cancer, but a few include sex at birth and getting older, family history, and genetics. The first, and most significant, risk factor is being an aging woman because as women get older, breast cancer rates increase along with the survival rate decreasing. Secondly, if you have a family history of breast cancer then your risk nearly doubles if that relative is a first-degree relative. Approximately 15% of women who get breast cancer have a family member diagnosed with it. Finally, genetic factors play a huge part when it comes to risk factors for breast cancer due to the BRCA1 and BRCA2 genes, the most commonly mutated genes. About 5% to 10% of breast cancers can be linked to known gene mutations inherited from one’s mother or father. However, about 85% of breast cancers occur in women who have no family history of breast cancer due to mutations in these genes that happen as a result of the general aging process (BreastCancer.Org) "),
+           
            p("Created by Zariyah Williams and Addi Johnson")
   ),
   
@@ -67,8 +72,17 @@ ui <- navbarPage(
              column(4, selectInput("county_filter", "Select County:", choices = c("All Counties", county_choices))),
              column(4, checkboxGroupInput("race_filter", "Select Racial/Ethnic Groups:", choices = race_choices, selected = race_choices))
            )
+  ),
+  
+  tabPanel("About Us",
+           h2("Addi adds stuff about self"),
+           h2("Zariyah adds stuff about self")
+           ),
+
+  tabPanel("References",
+           p("paste references"))
+  
   )
-)
 
 
 
